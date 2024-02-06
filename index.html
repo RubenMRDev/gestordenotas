@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Notas </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+        body {
+            text-align: center;
+            font-family: 'Comfortaa', sans-serif;
+        }
+
+        .notasBonitas{
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+    </style>
+</head>
+
+<body onload="onLoad()">
+    <h1>Gestor de notas</h1>
+    <button onclick="abrirCreadorNota()">Crear Nota</button>
+    <div id="miDiv">
+        <h1>Nueva nota</h1>
+
+        <p>Titulo de la nota</p>
+
+        <input type="text" id="tituloNota">
+        <p>Texto que quieres agregar</p>
+        <textarea name="" id="textoNota" cols="30" rows="10"></textarea>
+        <br>
+        <button onclick="cerrarCreadorNota()">Cancelar</button>
+        <button onclick="crearNota()">Crear</button>
+    </div>
+    <div id="contenedor"></div>
+
+    <script>
+        //DIV DE MENSAJES
+        const menuNota = document.getElementById("miDiv");
+
+
+        //FUNCION PARA OCULTAR DIV MENSAJE AL CARGAR LA PAGINA
+        function onLoad() {
+            menuNota.style.display = "none";
+        }
+        //FUNCION PARA ENSEÑAR DIV MENSAJES
+        function abrirCreadorNota() {
+            if (menuNota.style.display == "none") {
+                menuNota.style.display = "block";
+            }else{
+                menuNota.style.display = "none";
+            }
+        }
+        function cerrarCreadorNota() {
+            if (menuNota.style.display == "block") {
+                menuNota.style.display = "none";
+            }
+        }
+
+        //FUNCION PARA CREAR EL MENSAJE
+        let texto;
+        const inputTextoNota = document.getElementById("textoNota");
+        const inputTituloNota = document.getElementById("tituloNota");
+        function crearNota() {
+
+            alert("Se ha guardado el texto");
+
+            const div = document.createElement("div");
+            const h2 = document.createElement("h2");
+            const p = document.createElement("p");
+
+            p.textContent = inputTextoNota.value;
+            h2.textContent = inputTituloNota.value;
+
+            div.appendChild(h2);
+            div.appendChild(p);
+
+
+            div.className = "notasBonitas";
+
+            const contenedor = document.getElementById("contenedor");
+            contenedor.appendChild(div);
+
+
+            inputTextoNota.value = "";
+            inputTituloNota.value = "";
+        }
+
+    </script>
+</body>
+
+</html>
